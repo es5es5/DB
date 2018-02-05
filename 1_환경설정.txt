@@ -1,0 +1,59 @@
+데이터베이스(DB)
+데이터를 영원히 보관하려면 HDD에 써야 하는데
+단순 txt파일 같은 경우
+	- 다양한 기능(검색, 수정, 통계, ...) 구현 불편
+	- 파일 관리 허술
+	- 외부 컴퓨터에서 접근 불편
+그걸 해결한게 데이터베이스
+-------------------------------------------------------------	
+DB 서버
+	버전 : Oracle 11g Express Edition
+	IP주소 		: 172.16.1.22
+	포트		: 1521
+	DB이름(SID)	: xe
+	관리자ID		: t
+	관리자PW		: t
+		
+
+	오라클 서버에 접속하려면
+	Oracle Instant Client가 있어야 함
+-------------------------------------------------------------
+서버에서 cmd들어가서
+
+	- 기본 관리자 접속
+	sqlplus / as sysdba
+
+	- 원격에서 쓸 수 있는 관리자 계정 만들기
+	create user [ID] identified by [PW];	
+
+	- 관리자 계정 활성화
+	grant connect, dba to [ID];
+-------------------------------------------------------------
+- 접속할 때
+	sqlplus [ID]/[PW]@[IP주소]:[포트]/[SID]
+	
+- 계정 만들기
+	create user [ID] identified by [PW];
+	create user kwon identified by kwon;
+
+- 권한 설정
+	grant connect, resource to [ID];
+	grant connect, resource to kwon;
+
+// - 그 계정이 사용할 tablespace만들기
+//	create tablespace [ts이름] 
+//	datafile 'd:/db/[파일명].dbf'
+//	size 500m;
+
+ts이름 : kwon
+
+- 그 계정에 tablespace배정
+	alter user [ID] default tablespace [ts이름];
+	alter user kwon default tablespace kwon;
+-------------------------------------------------------------
+예비 계정
+s1 : s1
+s2 : s2
+s3 : s3
+s4 : s4
+s5 : s5

@@ -1,0 +1,37 @@
+Create : 데이터 넣기
+insert into 테이블명(필드명1, 필드명2, ...) values(값1, 값2, ...);
+insert into 테이블명 values(값1, 값2, ...);
+
+
+- 번호 자동으로 올라가게
+1. sequence 생성----------------------------
+create sequence 시퀀스명;
+ex)
+create sequence feb05_kwon_member_seq;
+
+2. insert할때 사용-------------------------
+insert into 테이블명 values(..., 시퀀스명.nextval, ...);
+
+ex)
+insert into feb05_kwon_member
+values(
+	feb05_kwon_member_seq.nextval, 
+	'kim',
+	sysdate, 
+	170, 
+	70.1
+);
+
+- 날짜처리
+	sysdate : 현재시간날짜
+	to_date('2000-02-02 AM 10:11:12', 'YYYY-MM-DD AM HH:MI:SS')
+
+ex)
+insert into feb05_kwon_member
+values(
+	feb05_kwon_member_seq.nextval, 
+	'jang',
+	to_date('2001-01-11','YYYY-MM-DD'), 
+	201, 
+	99.1
+);
