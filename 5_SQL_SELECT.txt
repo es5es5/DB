@@ -1,1 +1,270 @@
+
 Read : 데이터 조회
+
+1. 필요한 재료들이 어떤 테이블에 있나
+2. 최종 출력이 뭔지 따져서 subquery/join
+3. subquery는 결과로 여러개 나오면 안됨 => join
+
+select 필드명, 필드명, ... 
+from 테이블명
+where 조건
+order by 필드명 (desc), 필드명, ...;
+
+- 회원 테이블 전체 조회
+select * from feb05_kwon_member;
+
+- 회원 테이블에서 이름, 키만 전체 조회 
+select m_name,m_height from feb05_kwon_member;
+
+- 메뉴 테이블에서 메뉴명만 전체 조회
+????
+
+- 회원 키 평균
+max(필드명), min(필드명), avg(필드명), count(필드명)
+select avg(m_height) from feb05_kwon_member;
+
+- 제일 비싼 메뉴 가격
+???
+- 제일 싼 메뉴 가격
+???
+- 메뉴는 총 몇개
+???
+- 회원 키, 몸무게의 합
+select m_height+m_weight from feb05_kwon_member;
+
+- 회원 키m단위로 보기
+???
+
+- 키가 170이상인 회원 전체정보
+select *
+from feb05_kwon_member
+where m_height >= 170;
+
+- 몸무게가 70 미만인 회원 전체정보
+
+- 가격이 3000원 이상인 메뉴명만
+
+- 키가 170미만인 회원 중에 제일 큰 키
+select max(m_height)
+from feb05_kwon_member
+where m_height < 170;
+
+- 이름이 hong인 회원 전체 정보
+select *
+from feb05_kwon_member
+where m_name = 'hong';
+
+- 이름이 hong이 아닌 회원 전체 정보
+select *
+from feb05_kwon_member
+where m_name != 'hong';
+
+- 이름에 h가 들어가는 회원 전체 정보
+select *
+from feb05_kwon_member
+where m_name like '%h%';
+
+	% : 몇글자가 들어와도 상관없다
+
+- 이름이 c로 시작하는 메뉴 전체 정보
+select *
+from feb05_kwon_menu
+where me_name like 'c%';
+
+- 이름이 no로 끝나는 메뉴 평균가
+select avg(me_price)
+from feb05_kwon_menu
+where me_name like '%no';
+
+- 생일이 2000년 1월 1일 이후인 회원 전체 정보
+select *
+from feb05_kwon_member
+where m_birthday >= to_date('2000-01-01', 'YYYY-MM-DD');
+
+- 키가 180이상이거나, 몸무게가 80이상인 회원 전체 정보
+select *
+from feb05_kwon_member
+where m_height >= 180 or m_weight >= 80;
+
+- 이름에 e가 들어가거나, 몸무게가 80미만인 회원 이름만
+select *
+from feb05_kwon_member
+where m_name like '%e%' or m_weight < 80;
+
+- 2000년대생이고, 키가 170 이상인 회원 평균 몸무게
+select avg(m_weight)
+from feb05_kwon_member
+where m_birthday >= to_date('2000-01-01', 'YYYY-MM-DD') and
+m_height >= 170;
+
+- c로 시작하거나 a로 시작하는 메뉴는 몇개
+select count(me_name)
+from feb05_kwon_menu
+where me_name like 'c%' or me_name like 'a%';
+
+----- subquery -----
+- 제일 비싼 메뉴 이름
+select me_name
+from feb05_kwon_menu
+where me_price = (
+	select max(me_price)
+	from feb05_kwon_menu
+);
+
+- 키 제일 작은 사람의 전체 정보
+select *
+from feb05_kwon_member
+where m_height = (
+	select min(m_height)
+	from feb05_kwon_member
+);
+
+- 평균가보다 비싼 메뉴 이름
+select me_name
+from feb05_kwon_menu
+where me_price > (
+	select avg(me_price)
+	from feb05_kwon_menu
+);
+
+- 평균키보다 작은 사람은 몇명
+select count(m_name)
+from feb05_kwon_member
+where m_height < (
+	select avg(m_height)
+	from feb05_kwon_member
+);
+
+----- join -----
+- 전체정보 출력
+select *
+from feb05_kwon_hero, feb05_kwon_loc
+where feb05_kwon_hero.h_locname = feb05_kwon_loc.l_name;
+
+- ironman네 대통령 이름
+select l_president
+from feb05_kwon_hero, feb05_kwon_loc
+where feb05_kwon_hero.h_locname = feb05_kwon_loc.l_name 
+	and h_name = 'ironman';
+
+- moon네 영웅 이름, 나이
+select h_name, h_age
+from feb05_kwon_hero, feb05_kwon_loc
+where feb05_kwon_hero.h_locname = feb05_kwon_loc.l_name 
+	and l_president = 'moon';
+
+
+- 면적이 10000인 동네에 사는 영웅 평균 나이
+select avg(h_age)
+from feb05_kwon_hero, feb05_kwon_loc
+where feb05_kwon_hero.h_locname = feb05_kwon_loc.l_name 
+	and l_size = 10000;
+
+- 제일 비싼 과자 이름
+select s_name
+from feb05_kwon_snack
+where s_price = (
+	select max(s_price)
+	from feb05_kwon_snack
+);
+
+- 과자 평균 가격
+select avg(s_price)
+from feb05_kwon_snack;
+
+- 홍길동네 회사에서 만든 과자 이름, 가격
+select s_name, s_price
+from feb05_kwon_snack
+where s_maker = (
+	select m_name
+	from feb05_kwon_maker
+	where m_ceo = 'hong'
+);
+
+select s_name, s_price
+from feb05_kwon_snack, feb05_kwon_maker
+where s_maker = m_name
+	and m_ceo = 'hong';
+
+
+- 평균가보다 싼 과자 이름, 가격, 회사명, 회사위치
+select s_name, s_price, m_name, m_loc
+from feb05_kwon_snack, feb05_kwon_maker
+where s_maker = m_name and s_price < (
+	select avg(s_price)
+	from feb05_kwon_snack
+);
+
+
+
+
+-- 제육덮밥의 재료 출력
+-- 한국산 재료 들어간 메뉴명(subquery => join)
+-- 제일 비싼 메뉴의 재료 출력(subquery => join)
+-- 제육덮밥의 재료, 원산지 출력(subquery => join)
+-- 제일 싼 메뉴의 재료, 원산지 출력(subquery => join)
+-- 미국산 재료 들어간 메뉴명, 가격 출력(subquery => join)
+select feb06_kwon_menu.m_name, m_price
+from feb06_kwon_menu, feb06_kwon_include, feb06_kwon_from
+where feb06_kwon_menu.m_name = feb06_kwon_include.m_name 
+	and j_name = f_name
+	and f_where = '미국';
+
+-- 상품의 총 갯수
+select count(p_no) from feb06_product;
+
+-- 상품 평균가
+select avg(p_price) from feb06_product;
+
+-- 제일 비싼 상품 이름
+select p_name
+from feb06_product
+where p_price = (
+	select max(p_price)
+	from feb06_product
+);
+
+-- 10000원짜리 폰케이스 사려면 몇층으로 가야하나
+select s_floor
+from feb06_product, feb06_where, feb06_shop
+where p_no = w_p_no and w_s_no = s_no 
+	and p_price = 10000 and p_name = '폰케이스';
+
+-- 제일 싼 상품은 무슨 매장에서 파나
+select s_name
+from feb06_product, feb06_where, feb06_shop
+where p_no = w_p_no and w_s_no = s_no
+	and p_price = (
+		select min(p_price)	from feb06_product
+);
+
+-- 제일 큰 매장에서 파는 상품의 평균가는
+select avg(p_price)
+from feb06_product, feb06_where, feb06_shop
+where p_no = w_p_no and w_s_no = s_no
+	and s_size = (
+		select max(s_size) from feb06_shop	
+);
+
+
+-- 가전매장에서 파는 상품명, 가격을 가격순으로 정렬
+select p_name, p_price
+from feb06_product, feb06_where, feb06_shop
+where p_no = w_p_no and w_s_no = s_no
+	and s_name='가전'
+order by p_price;
+	
+-- 전체 상품명, 가격을 이름 오름차순으로 정렬
+select p_name, p_price
+from feb06_product
+order by p_name;
+
+-- 전체 상품명, 가격을 이름 내림차순으로 정렬
+select p_name, p_price
+from feb06_product
+order by p_name desc;
+
+-- 전체 상품명, 가격을 이름 오름차순으로 정렬, 이름이 같으면 가격 내림차순
+select p_name, p_price
+from feb06_product
+order by p_name, p_price desc;

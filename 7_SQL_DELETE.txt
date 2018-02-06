@@ -1,1 +1,18 @@
-Read : 데이터 조회
+Delete : 데이터 삭제
+	delete from 테이블명
+	where 조건
+
+-- 평창패딩 지우기
+delete from feb06_product
+where p_name = '평창패딩';
+
+-- 볼펜 지우기
+delete from feb06_where
+where w_p_no = (
+	select p_no
+	from feb06_product
+	where p_name = '볼펜'
+);
+
+delete from feb06_product
+where p_name = '볼펜';

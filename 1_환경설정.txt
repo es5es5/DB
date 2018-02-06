@@ -8,20 +8,25 @@
 -------------------------------------------------------------	
 DB 서버
 	버전 : Oracle 11g Express Edition
-	IP주소 		: 172.16.1.22
+	IP주소 		: localhost(172.16.1.100)
 	포트		: 1521
 	DB이름(SID)	: xe
-	관리자ID		: t
-	관리자PW		: t
+	관리자ID		: 
+	관리자PW		: 
 		
 
 	오라클 서버에 접속하려면
 	Oracle Instant Client가 있어야 함
 -------------------------------------------------------------
-서버에서 cmd들어가서
+서버에서 
+	- db파일이 저장될 폴더 확보
+	D:\Kwon\db
+
+	- cmd들어가서
 
 	- 기본 관리자 접속
 	sqlplus / as sysdba
+	/ : 현재 운영체제의 계정을 사용
 
 	- 원격에서 쓸 수 있는 관리자 계정 만들기
 	create user [ID] identified by [PW];	
@@ -40,16 +45,22 @@ DB 서버
 	grant connect, resource to [ID];
 	grant connect, resource to kwon;
 
-// - 그 계정이 사용할 tablespace만들기
-//	create tablespace [ts이름] 
-//	datafile 'd:/db/[파일명].dbf'
-//	size 500m;
+- 그 계정이 사용할 tablespace만들기
+	create tablespace [ts이름] 
+	datafile '[아까확보한폴더][파일명].dbf'
+	size 500m;
 
-ts이름 : kwon
+	create tablespace k datafile 'd:/kwon/db/k.dbf' size 500m;
 
 - 그 계정에 tablespace배정
 	alter user [ID] default tablespace [ts이름];
-	alter user kwon default tablespace kwon;
+	alter user kwon default tablespace k;
+
+
+
+
+
+
 -------------------------------------------------------------
 예비 계정
 s1 : s1
