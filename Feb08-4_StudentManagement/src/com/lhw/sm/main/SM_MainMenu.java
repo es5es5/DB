@@ -10,7 +10,7 @@ import java.util.Scanner;
 import com.lhw.sm.student.StudentDTO;
 
 // View
-public class Menu_View {
+public class SM_MainMenu {
 	public static void showMainMenu() {
 		Scanner keyboard = null;
 		
@@ -25,7 +25,7 @@ public class Menu_View {
 			System.out.println("-----------");
 			System.out.print("¹¹ : ");
 			int menu = keyboard.nextInt();
-			SMMain_C_Main.go(menu);
+			SM_MainController.go(menu);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -52,10 +52,10 @@ public class Menu_View {
 			s.setFin(fin);
 			s.setBirthday2(birthday2);
 			
-			SMMain_C_Main.goDBWork(1, s);;
+			SM_MainController.goDBWork(1, s);;
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			SM_MainController.goPrintRegStudentResult(0);
 		}
 	}
 	public static void showDelStudentMenu() {
@@ -71,7 +71,7 @@ public class Menu_View {
 			StudentDTO s = new StudentDTO();
 			s.setNo(no);
 			
-			SMMain_C_Main.goDBWork(5, s);
+			SM_MainController.goDBWork(5, s);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -96,11 +96,30 @@ public class Menu_View {
 			s.setMid(mid);
 			s.setFin(fin);
 			
-			SMMain_C_Main.goDBWork(3, s);
+			SM_MainController.goDBWork(3, s);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+	}
+	public static void showUpdateName() {
+		Scanner keyboard = null;
+		try {
+			keyboard = new Scanner(System.in);
+			System.out.print("¹Ù²Ü ÇÐ»ý ¹øÈ£ : ");
+			int no = keyboard.nextInt();
+			
+			StudentDTO s = new StudentDTO();
+			s.setNo(no);
+			
+			SM_MainController.goDBWork(4, s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void showAll() {
+		SM_MainController.goDBWork(2, null);
 	}
 }

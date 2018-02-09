@@ -18,44 +18,56 @@
 
 package com.lhw.sm.main;
 
-import com.lhw.sm.student.StudentDTO;
+import java.util.ArrayList;
+
 import com.lhw.sm.student.StudentDAO;
+import com.lhw.sm.student.StudentDTO;
 
 // Controller
-public class SMMain_C_Main {
+public class SM_MainController {
 	public static void goDBWork(int what, StudentDTO s) {
 		
 		if (what == 1) { // 학생 등록
 			StudentDAO.reg(s);
-		} else if(what == 2) {
-			
-		} else if(what == 3) { // 학생 수정
-			StudentDAO.update(s);
-		} else if(what == 4) {
-			
+		} else if(what == 2) { // 학생 조회
+			StudentDAO.showAll();
+		} else if(what == 3) { // 이름 수정
+			StudentDAO.updateScore(s);
+		} else if(what == 4) { // 이름 수정
+			StudentDAO.updateName(s);
 		} else if(what == 5) { // 학생 삭제
 			StudentDAO.del(s);
+		} else { // 종료
+			
 		}
 	}
 	
 	
 	public static void go(int menu) {
 		if (menu == 1) {
-			Menu_View.showInsertStudentMenu();
+			SM_MainMenu.showInsertStudentMenu();
 		} else if (menu == 2) {
-			
+			SM_MainMenu.showAll();
 		} else if (menu == 3) {
-			Menu_View.showUpdateStudentMenu();
+			SM_MainMenu.showUpdateStudentMenu();
 		} else if (menu == 4) {
-			
+			SM_MainMenu.showUpdateName();
 		} else if (menu == 5) {
-			Menu_View.showDelStudentMenu();
+			SM_MainMenu.showDelStudentMenu();
 		} else if (menu == 6) {
 			System.out.println("종료");
 		}			
 	}
 	
 	public static void main(String[] args) {
-		Menu_View.showMainMenu();
+		SM_MainMenu.showMainMenu();
+	}
+	
+	public static void goPrintRegStudentResult(int what) {
+		SM_View.printRegStudentResult(what);
+	}
+	
+	public static void goShowAll(int what, ArrayList<StudentDTO> students) {
+		SM_View.printShoAllResult(what, students);
 	}
 }

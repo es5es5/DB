@@ -33,3 +33,14 @@ where s_no = 2;
 
 delete from FEB08_STUDENT
 where s_no = ?;
+
+-- 번호 받아서 이름 바꾸기
+
+update fed08_student
+set s_name = ?
+where s_no = ?;
+
+select s_no, s_name, s_birthday, (s_mid + s_fin) / 2 as s_avg from feb08_student order by s_avg desc;
+
+
+select * from FEB08_STUDENT;

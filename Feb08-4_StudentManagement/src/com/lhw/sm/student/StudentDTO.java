@@ -1,3 +1,8 @@
+// DAO/DTO 패턴
+// Model
+// 		Data Access Object : DB에 관련된 작업 전담할 클래스
+//		Data Transfer/Temp Object : 작업 결과를 저장할 클래스
+
 package com.lhw.sm.student;
 
 import java.util.Date;
