@@ -59,6 +59,10 @@ public class NationDTO {
 		System.out.printf("이름 : %s\n", name);
 		System.out.printf("대륙 : %s\n", continent);
 		System.out.printf("인구 : %d\n", population);
+		System.out.println("----------");
+	}
+	public void nationMedalInfo() {
+		System.out.printf("이름 : %s\n", name);
 		System.out.printf("금 : %d\n", gold);
 		System.out.printf("은 : %d\n", silver);
 		System.out.printf("동 : %d\n", bronze);

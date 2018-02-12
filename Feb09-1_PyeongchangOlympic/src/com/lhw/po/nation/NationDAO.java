@@ -21,7 +21,6 @@ public class NationDAO {
 			pstmt.setString(2, n.getContinent());
 			pstmt.setInt(3, n.getPopulation());
 			
-			
 			// INSERT
 			if (pstmt.executeUpdate() == 1) {
 				NationController.goPrintRegResult("성공");
@@ -58,7 +57,7 @@ public class NationDAO {
 			} else {
 				NationController.goPrintUpdateResult("ㄴㄴㄴㄴㄴ");
 			}
-			NationMenu.show();
+			NationMenu.showNationMenu();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -85,7 +84,7 @@ public class NationDAO {
 			} else {
 				NationController.goPrintDelResult("ㄴㄴㄴㄴㄴ");
 			}
-			NationMenu.show();
+			NationMenu.showNationMenu();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -94,7 +93,7 @@ public class NationDAO {
 		}
 	}
 
-	public static void searchNation(NationDTO n) {
+	public static void searchNationInfo(NationDTO n) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -140,6 +139,50 @@ public class NationDAO {
 			DBManager.close(con, pstmt, rs);
 		}
 	}
-	
+
+	public static void searchNationMedelInfo(NationDTO n) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			// 연결
+			con = DBManager.connect();
+			// sql
+			
+			// Java에서 Oracle 명령어 LIKE 쓸 때 사용 법... 거지같네요 ( '%'||?||'%' )
+			String sql = "select * from FEB09_NATION where n_name like '%'||?||'%'";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, n.getName());
+
+			// SELECT
+			rs = pstmt.executeQuery();
+			
+			ArrayList<NationDTO> nations = new ArrayList<>();
+			NationDTO nn = null;
+			while (rs.next()) {
+				nn = new NationDTO();
+				nn.setName(rs.getString("n_name"));
+				nn.setGold(rs.getInt("n_gold"));
+				nn.setSilver(rs.getInt("n_silver"));
+				nn.setBronze(rs.getInt("n_Bronze"));
+				
+				nations.add(nn);
+			}
+			
+			if (nations.size() == 0) {
+				NationController.goPrintSearchMedalResult("없는나라", null);
+			} else {
+				NationController.goPrintSearchMedalResult("성공", nations);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			NationController.goPrintSearchMedalResult("실패", null);
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}
+	}
+
 }
 

@@ -1,6 +1,7 @@
 package com.lhw.po.main;
 
 import com.lhw.po.nation.NationController;
+import com.lhw.po.player.PlayerController;
 import com.lhw.po.sports.SportsController;
 
 public class MainController {
@@ -10,10 +11,9 @@ public class MainController {
 		if (menu == 1) {
 			NationController.goNationMenu();
 		} else if (menu == 2) {
+			PlayerController.goPlayerMenu();
 		} else if (menu == 3) {
 			SportsController.goSportsMenu();
-		} else if (menu == 4) {
-		} else if (menu == 5) {
 		} else {
 			System.out.println("Á¾·á");
 		}			

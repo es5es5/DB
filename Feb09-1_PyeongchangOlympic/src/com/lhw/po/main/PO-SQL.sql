@@ -7,7 +7,6 @@ create table feb09_nation(
 	n_bronze number(3) not null
 );
 
-select * from feb09_NATION;
 
 create table feb09_sports(
 	s_no number(3) primary key,
@@ -32,3 +31,22 @@ where s_no=1;
 select * from feb09_nation;
 
 select * from feb09_nation where n_name like '%¥Î«—πŒ±π%';
+
+create table feb09_player(
+	p_no number(3) primary key,
+	p_name varchar2(10 char) not null,
+	p_from varchar2(10 char) not null,
+	p_gold number(3) not null,
+	p_silver number(3) not null,
+	p_bronze number(3) not null
+);
+
+create sequence feb09_player_seq;
+select * from feb09_nation;
+
+
+update FEB09_PLAYER
+set p_gold=?, p_silver=?, p_bronze=?
+where p_name =?;
+
+select n_name, n_gold, n_silver, n_bronze from FEB09_NATION where where n_name like ?;

@@ -3,7 +3,7 @@ package com.lhw.po.nation;
 import java.util.Scanner;
 
 public class NationMenu {
-	public static void show() {
+	public static void showNationMenu() {
 		Scanner keyboard = null;
 
 		try {
@@ -41,7 +41,7 @@ public class NationMenu {
 
 			NationDTO nation = new NationDTO(name, continent, population, 0, 0, 0);
 
-			NationController.doDBWork("등록", nation);
+			NationController.doNationDBWork("등록", nation);
 		} catch (Exception e) {
 			NationController.goNationMenu();
 		}
@@ -69,7 +69,7 @@ public class NationMenu {
 			n.setSilver(silver);
 			n.setBronze(bronze);
 
-			NationController.doDBWork("메달수정", n);
+			NationController.doNationDBWork("메달수정", n);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -87,13 +87,13 @@ public class NationMenu {
 			NationDTO n = new NationDTO();
 			n.setName(name);
 
-			NationController.doDBWork("나라삭제", n);
+			NationController.doNationDBWork("나라삭제", n);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public static void searchNationMenu() {
+	public static void searchNationInfoMenu() {
 		Scanner keyboard = null;
 
 		try {
@@ -103,12 +103,27 @@ public class NationMenu {
 			
 			NationDTO n = new NationDTO(name, null, 0, 0, 0, 0);
 			
-			NationController.doDBWork("조회", n);
+			NationController.doNationDBWork("나라조회", n);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
+	public static void searchNationMedalMenu() {
+		Scanner keyboard = null;
+
+		try {
+			keyboard = new Scanner(System.in);
+			System.out.print("조회할 나라 이름 : ");
+			String name = keyboard.next();
+			
+			NationDTO n = new NationDTO(name, null, 0, 0, 0, 0);
+			
+			NationController.doNationDBWork("메달조회", n);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+	}
 }

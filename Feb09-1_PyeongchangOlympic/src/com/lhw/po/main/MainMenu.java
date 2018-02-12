@@ -16,7 +16,6 @@ public class MainMenu {
 			System.out.print("¹¹ : ");
 			int menu = keyboard.nextInt();
 			MainController.goSubMenu(menu);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("´Ù½Ã");
