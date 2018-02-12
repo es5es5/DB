@@ -8,11 +8,11 @@ public class MainController {
 	
 
 	public static void goSubMenu(int menu) {
-		if (menu == 1) {
+		if (menu == 1) { // 나라 메뉴
 			NationController.goNationMenu();
-		} else if (menu == 2) {
+		} else if (menu == 2) { // 선수 메뉴
 			PlayerController.goPlayerMenu();
-		} else if (menu == 3) {
+		} else if (menu == 3) { // 종목 메뉴
 			SportsController.goSportsMenu();
 		} else {
 			System.out.println("종료");

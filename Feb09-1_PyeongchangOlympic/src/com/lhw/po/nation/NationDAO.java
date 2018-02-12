@@ -184,5 +184,45 @@ public class NationDAO {
 		}
 	}
 
+	public static void searchAllInfo() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			// 연결
+			con = DBManager.connect();
+			
+			String sql = "select * from FEB09_NATION";
+			
+			pstmt = con.prepareStatement(sql);
+
+			// SELECT
+			rs = pstmt.executeQuery();
+			
+			ArrayList<NationDTO> nations = new ArrayList<>();
+			NationDTO nn = null;
+			while (rs.next()) {
+				nn = new NationDTO();
+				nn.setName(rs.getString("n_name"));
+				nn.setGold(rs.getInt("n_gold"));
+				nn.setSilver(rs.getInt("n_silver"));
+				nn.setBronze(rs.getInt("n_Bronze"));
+				nations.add(nn);
+			}
+			
+			if (nations.size() == 0) {
+				NationController.goPrintSearchMedalResult("없는나라", null);
+			} else {
+				NationController.goPrintSearchMedalResult("성공", nations);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			NationController.goPrintSearchMedalResult("실패", null);
+		} finally {
+			DBManager.close(con, pstmt, rs);
+		}		
+	}
+
 }
 

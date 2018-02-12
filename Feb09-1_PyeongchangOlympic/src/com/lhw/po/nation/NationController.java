@@ -19,7 +19,10 @@ public class NationController {
 			NationDAO.searchNationInfo(n);
 		} else if (what.equals("메달조회")) {
 			NationDAO.searchNationMedelInfo(n);
+		} else if (what.equals("전체조회")) {
+			NationDAO.searchAllInfo();
 		}
+		
 	}
 	public static void goPrintRegResult(String what) {
 		NationView.printRegResult(what);

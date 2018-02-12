@@ -32,8 +32,9 @@ public class SportsDTO {
 		this.detail = detail;
 	}
 	public void sportsInfo() {
-		System.out.printf("%d)", no);
-		System.out.printf("종목 이름 : %s", name);
-		System.out.printf("상세  : %s", detail);
+		System.out.printf("%d)\n", no);
+		System.out.printf("종목 이름 : %s\n", name);
+		System.out.printf("상세  : %s\n", detail);
+		System.out.println("-----------");
 	}
 }

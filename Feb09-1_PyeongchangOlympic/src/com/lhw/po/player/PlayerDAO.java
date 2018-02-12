@@ -48,7 +48,7 @@ public class PlayerDAO {
 			pstmt.setInt(3, player.getBronze());
 			pstmt.setString(4, player.getName());
 			
-			// INSERT
+			// UPDATE
 			if (pstmt.executeUpdate() == 1) {
 				PlayerController.goPrintUpdateResult("성공");
 			}
@@ -91,7 +91,6 @@ public class PlayerDAO {
 		try {
 			// 연결
 			con = DBManager.connect();
-			// sql
 			
 			// Java에서 Oracle 명령어 LIKE 쓸 때 사용 법... 거지같네요
 			String sql = "select * from feb09_player where p_name like '%'||?||'%'";
@@ -114,17 +113,14 @@ public class PlayerDAO {
 				
 				players.add(pp);
 			}
-			
 			if (players.size() == 0) {
 				PlayerController.goPrintSearchResult("없는선수", null);
 			} else {
 				PlayerController.goPrintSearchResult("성공", players);
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			PlayerController.goPrintSearchResult("실패", null);
-			
 		} finally {
 			DBManager.close(con, pstmt, rs);
 		}

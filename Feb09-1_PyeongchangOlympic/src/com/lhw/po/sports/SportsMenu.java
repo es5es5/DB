@@ -18,7 +18,7 @@ public class SportsMenu {
 			System.out.println("-----------");
 			System.out.print("뭐 : ");
 			int menu = keyboard.nextInt();
-			SportsController.goSubMenu(menu);
+			SportsController.goSportsSubMenu(menu);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -28,7 +28,7 @@ public class SportsMenu {
 		}
 	}
 	
-	public static void showRegMenu() {
+	public static void showRegSportsMenu() {
 		Scanner keyboard = null;
 		try {
 			keyboard = new Scanner(System.in);
@@ -42,13 +42,13 @@ public class SportsMenu {
 			s.setName(name);
 			s.setDetail(detail);
 			
-			SportsController.doDBWork("등록", s);
+			SportsController.doSportsDBWork("등록", s);
 		} catch (Exception e) {
 			NationController.goNationMenu();
 		}
 	}
 
-	public static void showUpdateMenu() {
+	public static void showUpdateSportsMenu() {
 		Scanner keyboard = null;
 		try {
 			keyboard = new Scanner(System.in);
@@ -65,9 +65,51 @@ public class SportsMenu {
 			s.setName(name);
 			s.setDetail(detail);
 			
-			SportsController.doDBWork("수정", s);
+			SportsController.doSportsDBWork("수정", s);
 		} catch (Exception e) {
-			NationController.goNationMenu();
+			SportsController.goSportsMenu();
 		}
+	}
+
+	public static void showDelSportsMenu() {
+		Scanner keyboard = null;
+		try {
+			keyboard = new Scanner(System.in);
+			
+			System.out.print("삭제할 종목 이름 : ");
+			String name = keyboard.next();
+			System.out.print("삭제할 상세 내용 : ");
+			String detail = keyboard.next();
+			
+			SportsDTO s = new SportsDTO();
+			s.setName(name);
+			s.setDetail(detail);
+			
+			SportsController.doSportsDBWork("종목삭제", s);
+		} catch (Exception e) {
+			SportsController.goSportsMenu();
+		}		
+	}
+
+	public static void showSearchSportsMenu() {
+		Scanner keyboard = null;
+		try {
+			keyboard = new Scanner(System.in);
+			
+			System.out.print("검색할 종목 이름 : ");
+			String name = keyboard.next();
+			
+			System.out.print("검색할 종목  상세 : ");
+			String detail = keyboard.next();
+			
+			
+			SportsDTO s = new SportsDTO();
+			s.setName(name);
+			s.setDetail(detail);
+			
+			SportsController.doSportsDBWork("종목검색", s);
+		} catch (Exception e) {
+			SportsController.goSportsMenu();
+		}		
 	}
 }

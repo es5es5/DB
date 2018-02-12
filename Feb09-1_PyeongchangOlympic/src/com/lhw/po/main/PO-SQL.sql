@@ -42,7 +42,7 @@ create table feb09_player(
 );
 
 create sequence feb09_player_seq;
-select * from feb09_nation;
+select * from feb09_sports;
 
 
 update FEB09_PLAYER
@@ -50,3 +50,5 @@ set p_gold=?, p_silver=?, p_bronze=?
 where p_name =?;
 
 select n_name, n_gold, n_silver, n_bronze from FEB09_NATION where where n_name like ?;
+
+

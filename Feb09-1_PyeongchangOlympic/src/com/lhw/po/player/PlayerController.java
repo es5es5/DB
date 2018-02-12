@@ -18,7 +18,6 @@ public class PlayerController {
 			MainController.main(null);
 		}
 	}
-
 	public static void doPlayerDBWork(String what, PlayerDTO player) {
 		if (what.equals("등록")) {
 			PlayerDAO.reg(player);
@@ -29,27 +28,20 @@ public class PlayerController {
 		} else if (what.equals("조회")) {
 			PlayerDAO.searchPlayer(player);
 		}
-
 	}
-
 	public static void goPrintRegResult(String what) {
 		PlayerView.printRegResult(what);
 	}
-
 	public static void goPlayerMenu() {
 		PlayerMenu.showPlayerMenu();
 	}
-
 	public static void goPrintUpdateResult(String what) {
 		PlayerView.printUpdateResult(what);
 	}
-
 	public static void goPrintDelResult(String what) {
 		PlayerView.printDelResult(what);		
 	}
-
 	public static void goPrintSearchResult(String what, ArrayList<PlayerDTO> players) {
 		PlayerView.printSerchResult(what, players);
 	}
-
 }

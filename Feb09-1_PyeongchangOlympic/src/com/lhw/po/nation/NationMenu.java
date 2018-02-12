@@ -103,8 +103,10 @@ public class NationMenu {
 			
 			NationDTO n = new NationDTO(name, null, 0, 0, 0, 0);
 			
+			if (name.equals("전체")) {
+				NationController.doNationDBWork("전체조회", n);
+			}
 			NationController.doNationDBWork("나라조회", n);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
