@@ -2,6 +2,7 @@ package com.lhw.po.sports;
 
 import java.util.Scanner;
 
+import com.lhw.po.main.MainView;
 import com.lhw.po.nation.NationController;
 
 public class SportsMenu {
@@ -21,11 +22,9 @@ public class SportsMenu {
 			SportsController.goSportsSubMenu(menu);
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("다시");
-		} finally {
-
-		}
+			MainView.reEnter();
+			SportsController.goSportsMenu();
+		} finally {}
 	}
 	
 	public static void showRegSportsMenu() {
@@ -101,7 +100,6 @@ public class SportsMenu {
 			
 			System.out.print("검색할 종목  상세 : ");
 			String detail = keyboard.next();
-			
 			
 			SportsDTO s = new SportsDTO();
 			s.setName(name);

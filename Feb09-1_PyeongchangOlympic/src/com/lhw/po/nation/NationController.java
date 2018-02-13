@@ -22,12 +22,11 @@ public class NationController {
 		} else if (what.equals("전체조회")) {
 			NationDAO.searchAllInfo();
 		}
-		
 	}
-	public static void goPrintRegResult(String what) {
+	public static void goPrintNationRegResult(String what) {
 		NationView.printRegResult(what);
 	}
-	public static void goSubMenu(int menu) {
+	public static void goNationSubMenu(int menu) {
 		if (menu == 1) { // 나라 등록
 			NationMenu.showRegMenu();
 		} else if (menu == 2) { // 나라 정보 조회
@@ -42,16 +41,16 @@ public class NationController {
 			MainController.main(null);
 		}
 	}
-	public static void goPrintUpdateResult(String what) {
+	public static void goNationPrintUpdateResult(String what) {
 		NationView.printUpdateResult(what);
 	}
-	public static void goPrintDelResult(String what) {
+	public static void goNationPrintDelResult(String what) {
 		NationView.printDelResult(what);
 	}
-	public static void goPrintSearchResult(String what, ArrayList<NationDTO> nations) {
+	public static void goNationPrintSearchResult(String what, ArrayList<NationDTO> nations) {
 		NationView.printSearchResult(what, nations);
 	}
-	public static void goPrintSearchMedalResult(String what, ArrayList<NationDTO> nations) {
+	public static void goNationPrintSearchMedalResult(String what, ArrayList<NationDTO> nations) {
 		NationView.printSearchMedalResult(what, nations);
 	}
 }

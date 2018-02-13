@@ -23,12 +23,12 @@ public class NationDAO {
 			
 			// INSERT
 			if (pstmt.executeUpdate() == 1) {
-				NationController.goPrintRegResult("성공");
+				NationController.goPrintNationRegResult("성공");
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			NationController.goPrintRegResult("망함~~~~~~~~~~~");
+			NationController.goPrintNationRegResult("실패");
 		} finally {
 			DBManager.close(con, pstmt, null);
 		}
@@ -53,9 +53,9 @@ public class NationDAO {
 			
 			// UPDATE
 			if (pstmt.executeUpdate() == 1) {
-				NationController.goPrintUpdateResult("성공");
+				NationController.goNationPrintUpdateResult("성공");
 			} else {
-				NationController.goPrintUpdateResult("ㄴㄴㄴㄴㄴ");
+				NationController.goNationPrintUpdateResult("ㄴㄴㄴㄴㄴ");
 			}
 			NationMenu.showNationMenu();
 			
@@ -80,9 +80,9 @@ public class NationDAO {
 			
 			// UPDATE
 			if (pstmt.executeUpdate() == 1) {
-				NationController.goPrintDelResult("성공");
+				NationController.goNationPrintDelResult("성공");
 			} else {
-				NationController.goPrintDelResult("ㄴㄴㄴㄴㄴ");
+				NationController.goNationPrintDelResult("ㄴㄴㄴㄴㄴ");
 			}
 			NationMenu.showNationMenu();
 			
@@ -126,14 +126,14 @@ public class NationDAO {
 			}
 			
 			if (nations.size() == 0) {
-				NationController.goPrintSearchResult("없는나라", null);
+				NationController.goNationPrintSearchResult("없는나라", null);
 			} else {
-				NationController.goPrintSearchResult("성공", nations);
+				NationController.goNationPrintSearchResult("성공", nations);
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			NationController.goPrintSearchResult("실패", null);
+			NationController.goNationPrintSearchResult("실패", null);
 			
 		} finally {
 			DBManager.close(con, pstmt, rs);
@@ -171,14 +171,14 @@ public class NationDAO {
 			}
 			
 			if (nations.size() == 0) {
-				NationController.goPrintSearchMedalResult("없는나라", null);
+				NationController.goNationPrintSearchMedalResult("없는나라", null);
 			} else {
-				NationController.goPrintSearchMedalResult("성공", nations);
+				NationController.goNationPrintSearchMedalResult("성공", nations);
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			NationController.goPrintSearchMedalResult("실패", null);
+			NationController.goNationPrintSearchMedalResult("실패", null);
 		} finally {
 			DBManager.close(con, pstmt, rs);
 		}
@@ -209,20 +209,17 @@ public class NationDAO {
 				nn.setBronze(rs.getInt("n_Bronze"));
 				nations.add(nn);
 			}
-			
 			if (nations.size() == 0) {
-				NationController.goPrintSearchMedalResult("없는나라", null);
+				NationController.goNationPrintSearchMedalResult("없는나라", null);
 			} else {
-				NationController.goPrintSearchMedalResult("성공", nations);
+				NationController.goNationPrintSearchMedalResult("성공", nations);
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
-			NationController.goPrintSearchMedalResult("실패", null);
+			NationController.goNationPrintSearchMedalResult("실패", null);
 		} finally {
 			DBManager.close(con, pstmt, rs);
 		}		
 	}
-
 }
 

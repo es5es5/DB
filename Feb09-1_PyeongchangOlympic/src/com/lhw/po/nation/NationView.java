@@ -2,7 +2,7 @@ package com.lhw.po.nation;
 
 import java.util.ArrayList;
 
-import com.lhw.po.main.MainMenu;
+import com.lhw.po.main.MainView;
 
 public class NationView {
 	public static void printRegResult(String what) {
@@ -15,11 +15,10 @@ public class NationView {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			MainMenu.showMainMenu();
+			MainView.showMainMenu();
 		}
-
 	}
-
+	
 	public static void printUpdateResult(String what) {
 		try {
 			if (what.equals("성공")) {
@@ -30,7 +29,7 @@ public class NationView {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			MainMenu.showMainMenu();
+			MainView.showMainMenu();
 		}
 	}
 
@@ -44,7 +43,7 @@ public class NationView {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			MainMenu.showMainMenu();
+			MainView.showMainMenu();
 		}
 	}
 
@@ -62,13 +61,12 @@ public class NationView {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			MainMenu.showMainMenu();
+			MainView.showMainMenu();
 		}
 	}
 
 	public static void printSearchMedalResult(String what, ArrayList<NationDTO> nations) {
 		try {
-
 			if (what.equals("성공")) {
 				for (NationDTO nation : nations) {
 					nation.nationMedalInfo();
@@ -81,7 +79,9 @@ public class NationView {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			MainMenu.showMainMenu();
+			MainView.showMainMenu();
 		}
 	}
+	
+
 }

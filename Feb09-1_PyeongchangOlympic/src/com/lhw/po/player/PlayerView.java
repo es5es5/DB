@@ -2,7 +2,7 @@ package com.lhw.po.player;
 
 import java.util.ArrayList;
 
-import com.lhw.po.main.MainMenu;
+import com.lhw.po.main.MainView;
 
 public class PlayerView {
 
@@ -16,7 +16,7 @@ public class PlayerView {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			MainMenu.showMainMenu();
+			MainView.showMainMenu();
 		}
 	}
 
@@ -31,7 +31,7 @@ public class PlayerView {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			MainMenu.showMainMenu();
+			MainView.showMainMenu();
 		}
 	}
 
@@ -45,7 +45,7 @@ public class PlayerView {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			MainMenu.showMainMenu();
+			MainView.showMainMenu();
 		}
 	}
 
@@ -63,7 +63,7 @@ public class PlayerView {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			MainMenu.showMainMenu();
+			MainView.showMainMenu();
 		}
 	}
 }

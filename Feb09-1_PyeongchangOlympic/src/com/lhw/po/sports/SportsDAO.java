@@ -21,12 +21,12 @@ public class SportsDAO {
 			
 			// INSERT
 			if (pstmt.executeUpdate() == 1) {
-				SportsController.goPrintRegResult("성공");
+				SportsController.goPrintSportsRegResult("성공");
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			SportsController.goPrintRegResult("망함~~~~~~~~~~~");
+			SportsController.goPrintSportsRegResult("망함~~~~~~~~~~~");
 		} finally {
 			DBManager.close(con, pstmt, null);
 		}
@@ -49,12 +49,12 @@ public class SportsDAO {
 			
 			// UPDATE
 			if (pstmt.executeUpdate() == 1) {
-				SportsController.goPrintUpdateResult("성공");
+				SportsController.goPrintSportsUpdateResult("성공");
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			SportsController.goPrintUpdateResult("ㄴㄴㄴㄴ");
+			SportsController.goPrintSportsUpdateResult("ㄴㄴㄴㄴ");
 		} finally {
 			DBManager.close(con, pstmt, null);
 		}
@@ -74,12 +74,12 @@ public class SportsDAO {
 			
 			// UPDATE
 			if (pstmt.executeUpdate() == 1) {
-				SportsController.goPrintDelResult("성공");
+				SportsController.goPrintSportsDelResult("성공");
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			SportsController.goPrintDelResult("ㄴㄴㄴㄴ");
+			SportsController.goPrintSportsDelResult("ㄴㄴㄴㄴ");
 		} finally {
 			DBManager.close(con, pstmt, null);
 		}		
@@ -113,14 +113,14 @@ public class SportsDAO {
 			}
 			
 			if (sports.size() == 0) {
-				SportsController.goPrintSearchResult("없는종목", null);
+				SportsController.goPrintSportsSearchResult("없는종목", null);
 			} else {
-				SportsController.goPrintSearchResult("성공", sports);
+				SportsController.goPrintSportsSearchResult("성공", sports);
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			SportsController.goPrintSearchResult("실패", null);
+			SportsController.goPrintSportsSearchResult("실패", null);
 			
 		} finally {
 			DBManager.close(con, pstmt, rs);

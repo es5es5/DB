@@ -36,20 +36,20 @@ public class SportsController {
 
 	}
 
-	public static void goPrintRegResult(String what) {
+	public static void goPrintSportsRegResult(String what) {
 		SportsView.printRegResult(what);
 	}
 
-	public static void goPrintUpdateResult(String what) {
+	public static void goPrintSportsUpdateResult(String what) {
 		SportsView.printUpdateResult(what);
 
 	}
 
-	public static void goPrintDelResult(String what) {
+	public static void goPrintSportsDelResult(String what) {
 		SportsView.printDelResult(what);		
 	}
 
-	public static void goPrintSearchResult(String what, ArrayList<SportsDTO> sports) {
+	public static void goPrintSportsSearchResult(String what, ArrayList<SportsDTO> sports) {
 		SportsView.printSearchResult(what, sports);
 	}
 }

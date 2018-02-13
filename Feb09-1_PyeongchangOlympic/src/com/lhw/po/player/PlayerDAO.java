@@ -22,12 +22,12 @@ public class PlayerDAO {
 			
 			// INSERT
 			if (pstmt.executeUpdate() == 1) {
-				PlayerController.goPrintRegResult("성공");
+				PlayerController.goPrintPlayerRegResult("성공");
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			PlayerController.goPrintRegResult("망함~~~~~~~~~~~");
+			PlayerController.goPrintPlayerRegResult("망함~~~~~~~~~~~");
 		} finally {
 			DBManager.close(con, pstmt, null);
 		}
@@ -50,12 +50,12 @@ public class PlayerDAO {
 			
 			// UPDATE
 			if (pstmt.executeUpdate() == 1) {
-				PlayerController.goPrintUpdateResult("성공");
+				PlayerController.goPrintPlayerUpdateResult("성공");
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			PlayerController.goPrintUpdateResult("망함~~~~~~~~~~~");
+			PlayerController.goPrintPlayerUpdateResult("망함~~~~~~~~~~~");
 		} finally {
 			DBManager.close(con, pstmt, null);
 		}
@@ -73,12 +73,12 @@ public class PlayerDAO {
 			
 			// DELETE
 			if (pstmt.executeUpdate() == 1) {
-				PlayerController.goPrintDelResult("성공");
+				PlayerController.goPrintPlayerDelResult("성공");
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			PlayerController.goPrintUpdateResult("망함~~~~~~~~~~~");
+			PlayerController.goPrintPlayerUpdateResult("망함~~~~~~~~~~~");
 		} finally {
 			DBManager.close(con, pstmt, null);
 		}		
@@ -114,13 +114,13 @@ public class PlayerDAO {
 				players.add(pp);
 			}
 			if (players.size() == 0) {
-				PlayerController.goPrintSearchResult("없는선수", null);
+				PlayerController.goPrintPlayerSearchResult("없는선수", null);
 			} else {
-				PlayerController.goPrintSearchResult("성공", players);
+				PlayerController.goPrintPlayerSearchResult("성공", players);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			PlayerController.goPrintSearchResult("실패", null);
+			PlayerController.goPrintPlayerSearchResult("실패", null);
 		} finally {
 			DBManager.close(con, pstmt, rs);
 		}

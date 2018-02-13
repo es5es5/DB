@@ -2,7 +2,7 @@ package com.lhw.po.sports;
 
 import java.util.ArrayList;
 
-import com.lhw.po.main.MainMenu;
+import com.lhw.po.main.MainView;
 
 public class SportsView {
 	public static void printRegResult(String what) {
@@ -15,7 +15,7 @@ public class SportsView {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			MainMenu.showMainMenu();
+			MainView.showMainMenu();
 		}
 	}
 
@@ -29,7 +29,7 @@ public class SportsView {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			MainMenu.showMainMenu();
+			MainView.showMainMenu();
 		}
 	}
 
@@ -43,7 +43,7 @@ public class SportsView {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			MainMenu.showMainMenu();
+			MainView.showMainMenu();
 		}
 	}
 
@@ -61,7 +61,7 @@ public class SportsView {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			MainMenu.showMainMenu();
+			MainView.showMainMenu();
 		}
 
 	}

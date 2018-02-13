@@ -2,6 +2,8 @@ package com.lhw.po.player;
 
 import java.util.Scanner;
 
+import com.lhw.po.main.MainView;
+
 public class PlayerMenu {
 	public static void showPlayerMenu() {
 		Scanner keyboard = null;
@@ -18,11 +20,9 @@ public class PlayerMenu {
 			PlayerController.goPlayerSubMenu(menu);
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("다시");
-		} finally {
-
-		}
+			MainView.reEnter();
+			PlayerController.goPlayerMenu();
+		} finally {}
 	}
 
 	public static void showRegMenu() {
@@ -36,7 +36,6 @@ public class PlayerMenu {
 			String from = keyboard.next();
 
 			PlayerDTO player = new PlayerDTO(name, from);
-
 			PlayerController.doPlayerDBWork("등록", player);
 		} catch (Exception e) {
 			PlayerController.goPlayerMenu();

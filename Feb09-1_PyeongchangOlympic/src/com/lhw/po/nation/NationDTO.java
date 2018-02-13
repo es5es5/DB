@@ -8,7 +8,6 @@ public class NationDTO {
 	private int silver;
 	private int bronze;
 	public NationDTO() {
-		// TODO Auto-generated constructor stub
 	}
 	public NationDTO(String name, String continent, int population, int gold, int silver, int bronze) {
 		super();

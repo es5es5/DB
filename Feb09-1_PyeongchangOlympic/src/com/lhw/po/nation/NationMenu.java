@@ -2,26 +2,29 @@ package com.lhw.po.nation;
 
 import java.util.Scanner;
 
+import com.lhw.po.main.MainView;
+
 public class NationMenu {
 	public static void showNationMenu() {
 		Scanner keyboard = null;
 
 		try {
 			keyboard = new Scanner(System.in);
-			System.out.println("1. 나라 등록");
-			System.out.println("2. 나라 정보 조회");
-			System.out.println("3. 메달 정보 조회");
-			System.out.println("4. 메달 정보 수정");
-			System.out.println("5. 나라 삭제");
-			System.out.println("9. 메인 메뉴로");
-			System.out.println("------------");
-			System.out.print("뭐 : ");
-			int menu = keyboard.nextInt();
-			NationController.goSubMenu(menu);
 
+			System.out.println("★ N A T I O N  M E N U★");
+			System.out.println("    1. 나라 등록");
+			System.out.println("    2. 나라 조회");
+			System.out.println("    3. 메달 조회");
+			System.out.println("    4. 메달 정보 수정");
+			System.out.println("    5. 나라 삭제");
+			System.out.println("    0. 메인 메뉴로");
+			System.out.println("------------");
+			System.out.print("선택 ☞ ");
+			int menu = keyboard.nextInt();
+			NationController.goNationSubMenu(menu);
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("다시");
+			MainView.reEnter();
+			NationController.goNationMenu();
 		} finally {
 
 		}
@@ -73,7 +76,6 @@ public class NationMenu {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public static void showDelMenu() {
@@ -98,6 +100,7 @@ public class NationMenu {
 
 		try {
 			keyboard = new Scanner(System.in);
+			System.out.println("\"전체\" 입력시 전체 나라 출력");
 			System.out.print("조회할 나라 이름 : ");
 			String name = keyboard.next();
 			

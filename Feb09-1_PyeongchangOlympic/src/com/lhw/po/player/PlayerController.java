@@ -29,19 +29,19 @@ public class PlayerController {
 			PlayerDAO.searchPlayer(player);
 		}
 	}
-	public static void goPrintRegResult(String what) {
+	public static void goPrintPlayerRegResult(String what) {
 		PlayerView.printRegResult(what);
 	}
 	public static void goPlayerMenu() {
 		PlayerMenu.showPlayerMenu();
 	}
-	public static void goPrintUpdateResult(String what) {
+	public static void goPrintPlayerUpdateResult(String what) {
 		PlayerView.printUpdateResult(what);
 	}
-	public static void goPrintDelResult(String what) {
+	public static void goPrintPlayerDelResult(String what) {
 		PlayerView.printDelResult(what);		
 	}
-	public static void goPrintSearchResult(String what, ArrayList<PlayerDTO> players) {
+	public static void goPrintPlayerSearchResult(String what, ArrayList<PlayerDTO> players) {
 		PlayerView.printSerchResult(what, players);
 	}
 }
