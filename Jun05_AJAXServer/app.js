@@ -27,8 +27,49 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-app.get('/users', user.list);
+// http://localhost:3000/getSnack
+app.get('/getSnack', function(req, res){
+	var db = require('mongojs')('localhost/jun05', ['snack']);
+	
+	// mongoDB 명령어
+	db.snack.find(function(err, result){
+		// JS객체 -> String
+		res.send(JSON.stringify(result));
+		
+	});
+	
+	
+});
+
+// http://localhost:3000/searchSnack?s_price=1000
+// &callback=xcz
+app.get('/searchSnack', function(req, res){
+	var p = req.query.s_price * 1;
+	var cb = req.query.callback;
+	
+	var db = require('mongojs')('localhost/jun05', ['snack']);
+	db.snack.find({s_price:{'$lte':p}}, function(err, result){
+		// JS객체 -> String
+		res.send(cb + '(' + JSON.stringify(result) + ')');
+	});
+});
+
+app.get('/searchSnack2', function(req, res){
+	var n = req.query.s_name;
+	var db = require('mongojs')('localhost/jun05', ['snack']);
+	db.snack.find({_id:{'$regex':n}}, function(err, result){
+		res.send(JSON.stringify(result));
+	});
+});
+
+app.get('/insertSnack', function(req, res){
+	var n = req.query.s_name;
+	var p = req.query.s_price;
+	var db = require('mongojs')('localhost/jun05', ['snack']);
+	db.snack.insert({_id:n, s_price:p}, function(err, result){
+		res.send(JSON.stringify(result));
+	});
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
